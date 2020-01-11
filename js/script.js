@@ -21,8 +21,6 @@ b.addEventListener("click", function() {
 });
 
 // inverser les couleurs de la video
-
-//pour la musique intrumental
 let invert = document.querySelector(".invert__btn");
 let invert_actif = 0;
 var vid = document.querySelector(".myVideo");
@@ -59,5 +57,20 @@ nextVideo.addEventListener("click", function() {
     vid.style.zIndex = 0;
     OtherVid.style.zIndex = cptVideo;
     OtherVid.play();
+  }
+});
+
+//Masque d'ecretage (video -> texte)
+let txtBtn = document.querySelector(".textTransform__btn");
+let EditText = document.querySelector(".text__transform");
+let cptTxt = 0;
+
+txtBtn.addEventListener("click", function() {
+  if (cptTxt < 1) {
+    cptTxt++;
+    EditText.style.display = "block";
+  } else {
+    cptTxt--;
+    EditText.style.display = "none";
   }
 });
