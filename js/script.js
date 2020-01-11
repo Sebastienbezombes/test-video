@@ -64,13 +64,18 @@ nextVideo.addEventListener("click", function() {
 let txtBtn = document.querySelector(".textTransform__btn");
 let EditText = document.querySelector(".text__transform");
 let cptTxt = 0;
+let oldVidGif = document.querySelector(".promisedGif");
 
 txtBtn.addEventListener("click", function() {
   if (cptTxt < 1) {
     cptTxt++;
-    EditText.style.display = "block";
+    document.oldVidGif.style.opacity = "100%";
+
+    console.log("test1");
   } else {
     cptTxt--;
-    EditText.style.display = "none";
+    document.oldVidGif.style.opacity = "0%";
+
+    console.log("test2");
   }
 });

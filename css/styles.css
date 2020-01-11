@@ -99,10 +99,11 @@ h1 {
   top: 100px;
   left: 320px;
   z-index: 2;
-  display: none;
+  display: block;
+  background-image: url("img/promised.gif");
+  background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
-  background-image: url("video/promised.mp4");
 }
 .textTransform__btn {
   position: absolute;
@@ -119,4 +120,13 @@ h1 {
   height: 44px;
   transition: 1s ease-in;
   z-index: 3;
+}
+.promisedGif {
+  position: absolute;
+  top: 0px;
+  left: 8px;
+  width: 1503.2px;
+  height: 600px;
+  display: none;
+  z-index: 1;
 }
