@@ -62,20 +62,15 @@ nextVideo.addEventListener("click", function() {
 
 //Masque d'ecretage (video -> texte)
 let txtBtn = document.querySelector(".textTransform__btn");
-let EditText = document.querySelector(".text__transform");
+let PromisedVideo = document.querySelector(".bottom");
+let violonVideo = document.querySelector(".top");
 let cptTxt = 0;
-let oldVidGif = document.querySelector(".promisedGif");
 
 txtBtn.addEventListener("click", function() {
   if (cptTxt < 1) {
     cptTxt++;
-    document.oldVidGif.style.opacity = "100%";
-
-    console.log("test1");
   } else {
     cptTxt--;
-    document.oldVidGif.style.opacity = "0%";
-
-    console.log("test2");
+    console.log("best");
   }
 });

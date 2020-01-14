@@ -91,20 +91,7 @@ h1 {
   background: black;
   display: none; /*Pour la cacher lorsqu'on raffraichit la page*/
 }
-.text__transform {
-  font-size: 130px;
-  font-family: "Montserrat", serif;
-  font-weight: bold;
-  position: absolute;
-  top: 100px;
-  left: 320px;
-  z-index: 2;
-  display: block;
-  background-image: url("img/promised.gif");
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-}
+
 .textTransform__btn {
   position: absolute;
   top: 25px;
@@ -121,12 +108,48 @@ h1 {
   transition: 1s ease-in;
   z-index: 3;
 }
-.promisedGif {
+.bottom {
   position: absolute;
-  top: 0px;
-  left: 8px;
   width: 1503.2px;
   height: 600px;
-  display: none;
-  z-index: 1;
+}
+.top {
+  width: 1500px;
+  height: 600px;
+  position: absolute;
+  mix-blend-mode: darken;
+}
+.centerMask {
+  display: flex;
+  width: 1480px;
+  height: 600px;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 160px;
+}
+.editTxt1 {
+  background: white;
+  font-size: 160px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  position: absolute;
+  left: 380px;
+  top: 100px;
+  text-align: center;
+  mix-blend-mode: screen;
+}
+.editTxt2 {
+  background: black;
+  color: white;
+  font-size: 160px;
+  font-family: "Montserrat";
+  font-weight: bold;
+  position: absolute;
+  left: 380px;
+  top: 100px;
+  text-align: center;
+}
+.cover {
+  object-fit: cover;
 }
