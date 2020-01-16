@@ -7,12 +7,14 @@ b.addEventListener("click", function() {
     vid.autoplay = false;
     vid.load();
     OtherVid.load();
-    vid.style.filter = "invert(0%)";
-    OtherVid.style.filter = "invert(0%)";
+    vid.style.filter = "invert(100%)";
+    OtherVid.style.filter = "invert(100%)";
+
     console.log(counteur);
   } else {
     counteur--;
     vid.style.filter = "invert(0%)";
+    OtherVid.style.filter = "invert(0%)";
     vid.autoplay = true;
     vid.load();
     OtherVid.load();
@@ -24,15 +26,19 @@ b.addEventListener("click", function() {
 let invert = document.querySelector(".invert__btn");
 let invert_actif = 0;
 var vid = document.querySelector(".myVideo");
+let body = document.querySelector("body");
 invert.addEventListener("click", function() {
   if (invert_actif < 1) {
     invert_actif++;
-    vid.style.filter = "invert(100%)";
     OtherVid.style.filter = "invert(100%)";
+    vid.style.filter = "invert(100%)";
+    body.style.backgroundColor = "white";
   } else {
     invert_actif--;
     vid.style.filter = "invert(0%)";
     OtherVid.style.filter = "invert(0%)";
+    vid.style.filter = "invert(0%)";
+    body.style.backgroundColor = "black";
   }
 });
 
@@ -60,17 +66,47 @@ nextVideo.addEventListener("click", function() {
   }
 });
 
-//Masque d'ecretage (video -> texte)
+//Masque d'ecretage (video -> text on video)
 let txtBtn = document.querySelector(".textTransform__btn");
 let PromisedVideo = document.querySelector(".bottom");
 let violonVideo = document.querySelector(".top");
 let cptTxt = 0;
+let maskTxt = document.querySelector(".txtMask");
+let maskVid = document.querySelector(".vidMask");
+let value = 1;
 
+invert.style.display = "block";
+nextVideo.style.display = "block";
+b.style.display = "block";
+if (value === 1) {
+  maskTxt.style.display = "none";
+  PromisedVideo.style.display = "none";
+  maskVid.pause();
+  OtherVid.play();
+}
 txtBtn.addEventListener("click", function() {
   if (cptTxt < 1) {
     cptTxt++;
+    value++;
+    maskVid.play();
+    OtherVid.style.display = "none";
+    vid.style.display = "none";
+    PromisedVideo.style.display = "block";
+    violonVideo.style.display = "block";
+    maskTxt.style.display = "block";
+    invert.style.display = "none";
+    nextVideo.style.display = "none";
+    b.style.display = "none";
+    console.log("00");
   } else {
     cptTxt--;
-    console.log("best");
+    maskVid.pause();
+    PromisedVideo.style.display = "none";
+    violonVideo.style.display = "none";
+    OtherVid.style.display = "block";
+    invert.style.display = "block";
+    nextVideo.style.display = "block";
+    b.style.display = "block";
+    console.log("01");
   }
 });
