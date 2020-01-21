@@ -6,6 +6,11 @@
 body{
   background: black;
 }
+.input__editTxt{
+  position: fixed;
+  z-index: 3;
+  display: none;
+}
 .number {
   font-family: "Montserrat", serif;
   font-weight: bold;

@@ -73,12 +73,12 @@ let violonVideo = document.querySelector(".top");
 let cptTxt = 0;
 let maskTxt = document.querySelector(".txtMask");
 let maskVid = document.querySelector(".vidMask");
-let value = 1;
+let values = 1;
 
 invert.style.display = "block";
 nextVideo.style.display = "block";
 b.style.display = "block";
-if (value === 1) {
+if (values === 1) {
   maskTxt.style.display = "none";
   PromisedVideo.style.display = "none";
   maskVid.pause();
@@ -87,8 +87,10 @@ if (value === 1) {
 txtBtn.addEventListener("click", function() {
   if (cptTxt < 1) {
     cptTxt++;
-    value++;
+    values++;
     maskVid.play();
+    OtherVid.pause();
+    vid.pause();
     OtherVid.style.display = "none";
     vid.style.display = "none";
     PromisedVideo.style.display = "block";
