@@ -1,46 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="css/styles.css" />
-    <title>Test-video</title>
-  </head>
-  <body>
-    <div class="content__video">
-      <video class="myVideo" controls>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="stylesheet" href="css//reset.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <title>Test-video</title>
+</head>
+
+<body>
+  <section class="containerBtnTop">
+    <button class="refreshBtn">Actualiser</button>
+    <button class="invertBtn">Inverser les couleurs</button>
+    <button class="changeVidBtn">Switcher de vidéo</button>
+  </section>
+
+  <section class="containerVideos">
+    <div class="contentVideo1">
+      <video class="myVideo" controls loop>
         <source src="video/space.mp4" type="video/mp4" />
       </video>
     </div>
-    <video class="otherVid" controls>
-      <source src="video/promised.mp4" type="video/mp4" />
-      </div>
+    <div class="contentVideo2">
+      <video class="otherVid" controls loop>
+        <source src="video/promised.mp4" type="video/mp4" />
+    </div>
     </video>
-
-    <div class="bottom">
+    <!--
+   <div class="vidUnder">
       <video class="vidMask" autoplay loop preload>
         <source src="video/promised.mp4" />
-      </video >
+      </video>
       <h1 class="txtMask">edit me</h1>
     </div>
-    
-    
-    <div class="top">
+
+
+    <div class="vidTop">
       <video class="vidMask" autoplay muted loop preload>
         <source src="video/space.mp4" />
       </video>
       <h1 class="txtMask">edit me</h1>
     </div>
-    
-    <button class="refresh__btn">Actualiser</button>
+-->
 
-    <button class="invert__btn">Inverser les couleurs</button>
 
-    <button class="changeVid__btn">Switcher de vidéo</button>
 
-    <button class="textTransform__btn">appliquer le masque</button>
+  </section>
 
-    <script src="js/script.js"></script>
-  </body>
+  <section class="containerBtnDown">
+    <button class="maskBtn">appliquer le masque</button>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+
 </html>

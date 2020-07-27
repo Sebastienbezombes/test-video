@@ -1,114 +1,136 @@
-let b = document.querySelector(".refresh__btn");
-let counteur = 0;
-var vid = document.querySelector(".myVideo");
-b.addEventListener("click", function() {
-  if (counteur < 1) {
-    counteur++;
-    vid.autoplay = false;
-    vid.load();
-    OtherVid.load();
-    vid.style.filter = "invert(100%)";
-    OtherVid.style.filter = "invert(100%)";
+const $body = document.querySelector("body");
+const $refreshBtn = document.querySelector(".refreshBtn");
+const $video = document.querySelector(".myVideo");
+const $otherVideo = document.querySelector(".otherVid");
+let refreshCpt = 0;
+const vidMask = document.querySelector('.vidMask');
 
-    console.log(counteur);
-  } else {
-    counteur--;
-    vid.style.filter = "invert(0%)";
-    OtherVid.style.filter = "invert(0%)";
-    vid.autoplay = true;
-    vid.load();
-    OtherVid.load();
-    console.log(counteur);
-  }
-});
+// Raffraichir la vidéo
+$refreshBtn.addEventListener('click', () => refresh($video, $otherVideo))
+let refresh = (video1, video2) => {
+  video1.load();
+  video2.load();
+  video1.classList.remove('invert');
+  video2.classList.remove('invert');
+  video2.play();
+}
 
 // inverser les couleurs de la video
-let invert = document.querySelector(".invert__btn");
-let invert_actif = 0;
-var vid = document.querySelector(".myVideo");
-let body = document.querySelector("body");
-invert.addEventListener("click", function() {
-  if (invert_actif < 1) {
-    invert_actif++;
-    OtherVid.style.filter = "invert(100%)";
-    vid.style.filter = "invert(100%)";
-    body.style.backgroundColor = "white";
-  } else {
-    invert_actif--;
-    vid.style.filter = "invert(0%)";
-    OtherVid.style.filter = "invert(0%)";
-    vid.style.filter = "invert(0%)";
-    body.style.backgroundColor = "black";
-  }
-});
+const $invertBtn = document.querySelector(".invertBtn");
+$invertBtn.addEventListener("click", () => invertColor($video, $otherVideo));
+let invertColor = (video1, video2) => {
+  video1.classList.toggle('invert');
+  video2.classList.toggle('invert');
+}
 
 //changer video
-let nextVideo = document.querySelector(".changeVid__btn");
-let OtherVid = document.querySelector(".otherVid");
-let cptVideo = 0;
-
-nextVideo.addEventListener("click", function() {
-  if (cptVideo < 1) {
-    OtherVid.pause();
-    vid.style.display = "block";
-    OtherVid.style.display = "none";
-    cptVideo++;
-    vid.style.zIndex = cptVideo;
-    vid.play();
+const $changeVideoBtn = document.querySelector(".changeVidBtn");
+let videoCpt = 0;
+$changeVideoBtn.addEventListener("click", () => {
+  if (txtCpt === 1) {
+    console.log(txtCpt);
+    posAbsolute($otherVideo, `${"none"}`, `${"none"}`);
+    $video.muted = true;
+    $otherVideo.muted = false;
+    $containerVideo2.classList.remove('vidUnder');
+    $containerVideo1.classList.remove('vidTop');
+    $containerVideo2.classList.add('vidTop');
+    $containerVideo1.classList.add('vidUnder');
+    vidMask.className = 'display';
+    $otherVideo.play();
+    $video.play();
+    txtCpt++;
+  }
+  if (txtCpt === 2) {
+    console.log(txtCpt);
+    posAbsolute($video, `${"none"}`, `${"none"}`);
+    $video.muted = false;
+    $otherVideo.muted = true;
+    $containerVideo2.classList.remove('vidTop');
+    $containerVideo1.classList.remove('vidUnder');
+    $containerVideo2.classList.add('vidUnder');
+    $containerVideo1.classList.add('vidTop');
+    $otherVideo.play();
+    $video.play();
+    console.log(txtCpt);
+    txtCpt--;
+  }
+  if (videoCpt < 1 && txtCpt === 0) {
+    videoCpt++;
+    videoPlayPause($video, $otherVideo);
+    displayVideo($video, $otherVideo);
   } else {
-    vid.pause();
-    vid.style.display = "none";
-    OtherVid.style.display = "block";
-    cptVideo--;
-    vid.style.zIndex = 0;
-    OtherVid.style.zIndex = cptVideo;
-    OtherVid.play();
+    videoCpt--;
+    videoPlayPause($otherVideo, $video);
+    displayVideo($otherVideo, $video);
   }
 });
+
+videoPlayPause = (play, pause) => {
+  play.play();
+  pause.pause();
+}
+
+displayVideo = (block, none) => {
+  block.style.display = "block";
+  none.style.display = "none";
+}
 
 //Masque d'ecretage (video -> text on video)
-let txtBtn = document.querySelector(".textTransform__btn");
-let PromisedVideo = document.querySelector(".bottom");
-let violonVideo = document.querySelector(".top");
-let cptTxt = 0;
-let maskTxt = document.querySelector(".txtMask");
-let maskVid = document.querySelector(".vidMask");
-let values = 1;
+const $maskBtn = document.querySelector(".maskBtn");
+const $containerVideo1 = document.querySelector('.contentVideo1');
+const $containerVideo2 = document.querySelector('.contentVideo2');
+let txtCpt = 0;
+$maskBtn.addEventListener("click", () => {
+  if (txtCpt < 1) {
+    txtCpt++;
 
-invert.style.display = "block";
-nextVideo.style.display = "block";
-b.style.display = "block";
-if (values === 1) {
-  maskTxt.style.display = "none";
-  PromisedVideo.style.display = "none";
-  maskVid.pause();
-  OtherVid.play();
-}
-txtBtn.addEventListener("click", function() {
-  if (cptTxt < 1) {
-    cptTxt++;
-    values++;
-    maskVid.play();
-    OtherVid.pause();
-    vid.pause();
-    OtherVid.style.display = "none";
-    vid.style.display = "none";
-    PromisedVideo.style.display = "block";
-    violonVideo.style.display = "block";
-    maskTxt.style.display = "block";
-    invert.style.display = "none";
-    nextVideo.style.display = "none";
-    b.style.display = "none";
-    console.log("00");
+    // Positionnement vidéo otherVideo et apparition de vidéo
+    $otherVideo.style.display = "block";
+    posAbsolute($otherVideo, `${"absolute"}`, `${"0px"}`);
+    $video.style.display = "block";
+
+    //load video
+    $otherVideo.load();
+    $otherVideo.muted = true;
+
+    // Ajout du filtre
+    $otherVideo.classList.add('vidMask');
+    $video.classList.add('vidMask');
+
+    // Ajout des 2 h1
+    let h1 = document.createElement('h1');
+    h1.textContent = "EDIT ME";
+    $containerVideo2.append(h1);
+    let h1Under = document.createElement('h1');
+    h1Under.textContent = "EDIT ME";
+    $containerVideo1.append(h1Under);
+
+    // Styles h1
+    h1.classList.add('txtMask');
+    h1Under.classList.add('txtMask');
+
+    // Ajout class container videos
+    $containerVideo2.classList.add('vidUnder');
+    $containerVideo1.classList.add('vidTop');
+
+    //play des 2 videos
+    $otherVideo.play();
+    $video.play();
+
+    $maskBtn.textContent = "Enlever le masque";
   } else {
-    cptTxt--;
-    maskVid.pause();
-    PromisedVideo.style.display = "none";
-    violonVideo.style.display = "none";
-    OtherVid.style.display = "block";
-    invert.style.display = "block";
-    nextVideo.style.display = "block";
-    b.style.display = "block";
-    console.log("01");
+    txtCpt = 0;
+    $otherVideo.muted = false;
+
+
+    $maskBtn.textContent = "Appliquer le masque";
+    $otherVideo.play();
   }
 });
+
+const posAbsolute = (variable, position, value) => {
+  variable.style.position = position;
+  variable.style.top = value;
+  variable.style.left = value;
+}

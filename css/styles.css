@@ -3,12 +3,31 @@
   src: url("/fonts/Montserrat-Regular.ttf") format("ttf");
   font-weight: bold;
 }
-body{
-  background: black;
+
+:root {
+  /* COLOR */
+  --black: #101010;
+  --white: white;
+
+  /*Z-INDEX*/
+  --zindBase: 3;
+
+  /*Margin*/
+  --margBase: 16px;
 }
-.input__editTxt{
+
+body{
+  background: var(--black);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+}
+.inputEditTxt{
   position: fixed;
-  z-index: 3;
+  z-index: var(--zindBase);
   display: none;
 }
 .number {
@@ -17,14 +36,12 @@ body{
   color: red;
   display: inline-block;
 }
-.textTransform__btn:hover{
-  cursor: pointer;
-}
+.maskBtn:hover{cursor: pointer}
 h1 {
   font-family: "Montserrat", serif;
   font-weight: lighter;
 }
-.refresh__btn {
+.refreshBtn {
   font-family: "Montserrat", serif;
   font-weight: bold;
   color: #101010;
@@ -35,20 +52,16 @@ h1 {
   width: 8.125rem;
   height: 2.75rem;
   transition: 1s ease-in;
-  position: absolute;
-  top: 25px;
-  left: 100px;
-  z-index: 3;
 }
-.refresh__btn:hover {
+.refreshBtn:hover {
   box-shadow: rgba(0, 0, 0, 0) 0px 10px 12px;
   cursor: pointer;
 }
 
-.invert__btn {
+.invertBtn {
   font-family: "Montserrat", serif;
   font-weight: bold;
-  color: #101010;
+  color: var(--black);
   background-color: pink;
   border-radius: 25px;
   border: none;
@@ -56,22 +69,15 @@ h1 {
   width: 11.88rem;
   height: 2.75rem;
   transition: 1s ease-in;
-  position: absolute;
-  top: 100px;
-  left: 70px;
-  z-index: 3;
 }
-.invert__btn:hover {
+.invertBtn:hover {
   box-shadow: rgba(0, 0, 0, 0) 0px 10px 12px;
   cursor: pointer;
 }
-.changeVid__btn {
-  position: absolute;
-  top: 175px;
-  left: 70px;
+.changeVidBtn {
   font-family: "Montserrat", serif;
   font-weight: bold;
-  color: #101010;
+  color: var(--black);
   background-color: orange;
   border-radius: 1.563rem;
   border: none;
@@ -79,39 +85,35 @@ h1 {
   width: 11.88rem;
   height: 2.75rem;
   transition: 1s ease-in;
-  z-index: 3;
 }
-.changeVid__btn:hover {
+.changeVidBtn:hover {
   box-shadow: rgba(0, 0, 0, 0) 0px 10px 12px;
   cursor: pointer;
 }
 .otherVid {
-  width: 93.75rem;
-  height: 37.5rem;
-  background-color: black;
-  position: absolute;
-  top: 0px;
+  background: black;
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
 }
-.content__video {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+.contentVideo1, .contentVideo2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 .myVideo {
   background: black;
-  display: none; /*Pour la cacher lorsqu'on raffraichit la page*/
-  width: 93.75rem;
-  height: 37.5rem;
+  width: 100%;
+  height: 500px;
+  border-radius: 7px;
 }
 
-.textTransform__btn {
-  position: absolute;
-  top: 25px;
-  left: 1250px;
+.maskBtn {
   font-family: "Montserrat", serif;
   font-weight: bold;
-  color: #101010;
+  color: var(--black);
   background-color: yellow;
   border-radius: 1.563rem;
   border: none;
@@ -119,11 +121,9 @@ h1 {
   width: 11.88rem;
   height: 2.75rem;
   transition: 1s ease-in;
-  z-index: 3;
 }
 
-.vidMask,
-.txtMask {
+.vidMask, .txtMask {
   position: absolute;
   top: 0;
   left: 0;
@@ -132,29 +132,55 @@ h1 {
   margin: 0;
 }
 
-.vidMask {
-  object-fit: cover;
-  
-}
-
+.vidMask {object-fit: cover}
+.display {display: block}
 .txtMask {
-  display: block;
-  font-size: 20vw;
+  font-size: 200px;
   font-family: "Montserrat", sans-serif;
   font-weight: 700;
-  line-height: 100vh;
   text-transform: uppercase;
   text-align: center;
   background: white;
+  line-height: 60vh;
+  border-radius: 7px;
   mix-blend-mode: screen;
 }
 
-.top {
-  mix-blend-mode: darken;
-  display: none;
+.vidUnder {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
-.top .txtMask {
+
+.vidTop {
+  mix-blend-mode: darken;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+.vidTop .txtMask {
     background: black;
     color: white;
-  }
+}
+.invert {filter: invert(100%)}
+
+.containerBtnTop {
+  display: flex;
+  justify-content: space-around;
+  margin-top: var(--margBase);
+  width: 100vw;
+}
+
+.containerVideos {
+  height: 500px;
+  width: 94vw;
+  background-size: contain;
+  position: relative;
+}
+
+.containerBtnDown {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 }
