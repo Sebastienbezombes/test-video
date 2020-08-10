@@ -4,6 +4,10 @@ const $video = document.querySelector(".myVideo");
 const $otherVideo = document.querySelector(".otherVid");
 let refreshCpt = 0;
 const vidMask = document.querySelector('.vidMask');
+const $containerVideo1 = document.querySelector('.contentVideo1');
+const $containerVideo2 = document.querySelector('.contentVideo2');
+let h1 = document.createElement('h1');
+let h1Under = document.createElement('h1');
 
 // Raffraichir la vidéo
 $refreshBtn.addEventListener('click', () => refresh($video, $otherVideo))
@@ -28,33 +32,26 @@ const $changeVideoBtn = document.querySelector(".changeVidBtn");
 let videoCpt = 0;
 $changeVideoBtn.addEventListener("click", () => {
   if (txtCpt === 1) {
+    $changeVideoBtn.style.display = "none"
     console.log(txtCpt);
     posAbsolute($otherVideo, `${"none"}`, `${"none"}`);
+    posAbsolute($video, `${"absolute"}`, `${"0px"}`);
     $video.muted = true;
     $otherVideo.muted = false;
+    $otherVideo.classList.add('vidMask');
+    $video.classList.add('vidMask');
     $containerVideo2.classList.remove('vidUnder');
     $containerVideo1.classList.remove('vidTop');
     $containerVideo2.classList.add('vidTop');
     $containerVideo1.classList.add('vidUnder');
-    vidMask.className = 'display';
+    vidMask.classList.add('display');
     $otherVideo.play();
     $video.play();
-    txtCpt++;
+    console.log($changeVideoBtn, "change 1")
+
+
   }
-  if (txtCpt === 2) {
-    console.log(txtCpt);
-    posAbsolute($video, `${"none"}`, `${"none"}`);
-    $video.muted = false;
-    $otherVideo.muted = true;
-    $containerVideo2.classList.remove('vidTop');
-    $containerVideo1.classList.remove('vidUnder');
-    $containerVideo2.classList.add('vidUnder');
-    $containerVideo1.classList.add('vidTop');
-    $otherVideo.play();
-    $video.play();
-    console.log(txtCpt);
-    txtCpt--;
-  }
+
   if (videoCpt < 1 && txtCpt === 0) {
     videoCpt++;
     videoPlayPause($video, $otherVideo);
@@ -78,8 +75,6 @@ displayVideo = (block, none) => {
 
 //Masque d'ecretage (video -> text on video)
 const $maskBtn = document.querySelector(".maskBtn");
-const $containerVideo1 = document.querySelector('.contentVideo1');
-const $containerVideo2 = document.querySelector('.contentVideo2');
 let txtCpt = 0;
 $maskBtn.addEventListener("click", () => {
   if (txtCpt < 1) {
@@ -87,7 +82,9 @@ $maskBtn.addEventListener("click", () => {
 
     // Positionnement vidéo otherVideo et apparition de vidéo
     $otherVideo.style.display = "block";
-    posAbsolute($otherVideo, `${"absolute"}`, `${"0px"}`);
+    $otherVideo.style.position = "absolute";
+    $otherVideo.style.top = "0px";
+    $otherVideo.style.left = "0px";
     $video.style.display = "block";
 
     //load video
@@ -99,10 +96,8 @@ $maskBtn.addEventListener("click", () => {
     $video.classList.add('vidMask');
 
     // Ajout des 2 h1
-    let h1 = document.createElement('h1');
     h1.textContent = "EDIT ME";
     $containerVideo2.append(h1);
-    let h1Under = document.createElement('h1');
     h1Under.textContent = "EDIT ME";
     $containerVideo1.append(h1Under);
 

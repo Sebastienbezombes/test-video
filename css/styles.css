@@ -131,7 +131,7 @@ h1 {
   height: 100%;
   margin: 0;
 }
-
+.vidMask.display {display: block}
 .vidMask {object-fit: cover}
 .display {display: block}
 .txtMask {
@@ -150,6 +150,7 @@ h1 {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 .vidTop {
