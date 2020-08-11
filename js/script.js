@@ -8,6 +8,7 @@ const $containerVideo1 = document.querySelector('.contentVideo1');
 const $containerVideo2 = document.querySelector('.contentVideo2');
 let h1 = document.createElement('h1');
 let h1Under = document.createElement('h1');
+let changeCpt = 0;
 
 // Raffraichir la vidéo
 $refreshBtn.addEventListener('click', () => refresh($video, $otherVideo))
@@ -31,7 +32,8 @@ let invertColor = (video1, video2) => {
 const $changeVideoBtn = document.querySelector(".changeVidBtn");
 let videoCpt = 0;
 $changeVideoBtn.addEventListener("click", () => {
-  if (txtCpt === 1) {
+  if (changeCpt === 1) {
+    changeCpt--
     $changeVideoBtn.style.display = "none"
     console.log(txtCpt);
     posAbsolute($otherVideo, `${"none"}`, `${"none"}`);
@@ -48,8 +50,6 @@ $changeVideoBtn.addEventListener("click", () => {
     $otherVideo.play();
     $video.play();
     console.log($changeVideoBtn, "change 1")
-
-
   }
 
   if (videoCpt < 1 && txtCpt === 0) {
@@ -79,6 +79,8 @@ let txtCpt = 0;
 $maskBtn.addEventListener("click", () => {
   if (txtCpt < 1) {
     txtCpt++;
+    changeCpt++;
+    console.log(txtCpt, 'txtcpt dans masque')
 
     // Positionnement vidéo otherVideo et apparition de vidéo
     $otherVideo.style.display = "block";
@@ -118,6 +120,22 @@ $maskBtn.addEventListener("click", () => {
     txtCpt = 0;
     $otherVideo.muted = false;
 
+    $otherVideo.style.display = "block";
+    $video.style.display = "none";
+
+    //load video
+    $otherVideo.load();
+    $otherVideo.muted = false;
+
+    // Ajout du filtre
+    $otherVideo.classList.remove('vidMask');
+    $video.classList.remove('vidMask');
+
+    h1.classList.remove('txtMask')
+    h1Under.classList.remove('txtMask')
+
+    $containerVideo2.classList.remove('vidUnder');
+    $containerVideo1.classList.remove('vidTop');
 
     $maskBtn.textContent = "Appliquer le masque";
     $otherVideo.play();
